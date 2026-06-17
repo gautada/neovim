@@ -1,0 +1,38 @@
+version: "3.9"
+services:
+  neovim:
+    build:
+      args:
+        ALPINE_VERSION: "latest"
+        CONTAINER_VERSION: "0.9.0"
+      context: .
+      dockerfile: container.build
+      no_cache: true
+      tags:
+        - "neovim:dev"
+        - "gautada/neovim:dev"
+    image: "neovim:dev"
+    hostname: "neovim"
+    ports:
+      - "8888:8080"
+    # privileged: true
+    volumes:
+      # - "/Users/mada/Workspace/Volumes/Container:/mnt/volumes/container"
+      # - "/Users/mada/Workspace/Volumes/Backup:/mnt/volumes/backup"
+      - "/mnt/volumes/container//Container:/mnt/volumes/container"
+      - "/mnt/volumes/container/Backup:/mnt/volumes/backup"
+#         
+# volumes:
+#   container:
+#     driver: local
+#     driver_opts:
+#       type: none
+#       o: bind
+#       device: /Users/mada/Workspace/code/container-volume
+#   backup:
+#     driver: local
+#     driver_opts:
+#       type: none
+#       o: bind
+#       device: /Users/mada/Workspace/code/backup-volume
+      
